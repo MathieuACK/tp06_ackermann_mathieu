@@ -24,11 +24,10 @@ function noFutureDateValidator(
 }
 
 @Component({
-  selector: 'app-pollution-report',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, PollutionSummaryComponent],
-  templateUrl: './pollution-report.component.html',
-  styleUrls: ['./pollution-report.component.css'],
+    selector: 'app-pollution-report',
+    imports: [ReactiveFormsModule, CommonModule, PollutionSummaryComponent],
+    templateUrl: './pollution-report.component.html',
+    styleUrls: ['./pollution-report.component.css']
 })
 export class PollutionReportComponent implements OnInit {
   pollutionFormValid: boolean = false;

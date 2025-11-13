@@ -6,11 +6,10 @@ import { PollutionsService } from '../../services/pollutions/pollutions.service'
 import { Pollution } from '../../models/pollutions';
 
 @Component({
-  selector: 'app-pollution-list',
-  standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './pollution-list.component.html',
-  styleUrls: ['./pollution-list.component.css'],
+    selector: 'app-pollution-list',
+    imports: [CommonModule, FormsModule, RouterModule],
+    templateUrl: './pollution-list.component.html',
+    styleUrls: ['./pollution-list.component.css']
 })
 export class PollutionListComponent implements OnInit {
   pollutions: Pollution[] = [];

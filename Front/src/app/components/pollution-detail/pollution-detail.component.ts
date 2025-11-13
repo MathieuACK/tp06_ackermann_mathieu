@@ -7,11 +7,10 @@ import { Pollution } from '../../models/pollutions';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
-  selector: 'app-pollution-detail',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './pollution-detail.component.html',
-  styleUrl: './pollution-detail.component.css',
+    selector: 'app-pollution-detail',
+    imports: [CommonModule, RouterModule, FormsModule],
+    templateUrl: './pollution-detail.component.html',
+    styleUrl: './pollution-detail.component.css'
 })
 export class PollutionDetailComponent implements OnInit {
   pollution: Pollution | null = null;
