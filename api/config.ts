@@ -12,6 +12,7 @@ export const config = {
     password: process.env.DB_PASSWORD,
     bdname: process.env.DB_NAME,
   },
+  PORT: process.env.PORT || 3000,
 };
 
 export default config;
