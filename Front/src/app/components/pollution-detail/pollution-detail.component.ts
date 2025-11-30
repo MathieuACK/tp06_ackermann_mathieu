@@ -2,15 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { PollutionsService } from '../../services/pollutions/pollutions.service';
 import { Pollution } from '../../models/pollutions';
 import { AuthService } from '../../services/auth/auth.service';
+import { FavoritesState } from '../../shared/states/favorites.state';
+import {
+  AddFavorite,
+  RemoveFavorite,
+} from '../../shared/actions/favorites.actions';
 
 @Component({
-    selector: 'app-pollution-detail',
-    imports: [CommonModule, RouterModule, FormsModule],
-    templateUrl: './pollution-detail.component.html',
-    styleUrl: './pollution-detail.component.css'
+  selector: 'app-pollution-detail',
+  imports: [CommonModule, RouterModule, FormsModule],
+  templateUrl: './pollution-detail.component.html',
+  styleUrl: './pollution-detail.component.css',
 })
 export class PollutionDetailComponent implements OnInit {
   pollution: Pollution | null = null;
@@ -25,7 +31,8 @@ export class PollutionDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private pollutionsService: PollutionsService,
-    private auth: AuthService
+    private auth: AuthService,
+    private store: Store
   ) {
     this.isLogged = this.auth.isLoggedIn();
     this.auth.getCurrentUser().subscribe((u) => (this.isLogged = !!u));
@@ -109,6 +116,22 @@ export class PollutionDetailComponent implements OnInit {
     if (this.pollution) {
       const url = `https://www.google.com/maps?q=${this.pollution.latitude},${this.pollution.longitude}`;
       window.open(url, '_blank');
+    }
+  }
+
+  isFavorite(): boolean {
+    if (!this.pollution) return false;
+    return this.store.selectSnapshot(FavoritesState.isFavorite)(
+      this.pollution.id
+    );
+  }
+
+  toggleFavorite(): void {
+    if (!this.pollution) return;
+    if (this.isFavorite()) {
+      this.store.dispatch(new RemoveFavorite(this.pollution.id));
+    } else {
+      this.store.dispatch(new AddFavorite(this.pollution));
     }
   }
 }

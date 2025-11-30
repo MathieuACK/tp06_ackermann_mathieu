@@ -19,6 +19,18 @@
         ← Retour à la liste
       </button>
       <div class="header-actions">
+        @if (isLogged) {
+        <button
+          class="btn"
+          [class.btn-favorite]="isFavorite()"
+          [class.btn-add-favorite]="!isFavorite()"
+          (click)="toggleFavorite()"
+        >
+          {{
+            isFavorite() ? "❤️ Retirer des favoris" : "🤍 Ajouter aux favoris"
+          }}
+        </button>
+        }
         <button class="btn btn-danger" (click)="deletePollution()">
           🗑️ Supprimer
         </button>
