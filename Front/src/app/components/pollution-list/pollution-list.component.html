@@ -131,6 +131,16 @@
           <button class="btn btn-info" (click)="viewDetail(pollution.id)">
             Voir détails
           </button>
+          @if (isLogged) {
+          <button
+            class="btn"
+            [class.btn-favorite]="isFavorite(pollution.id)"
+            [class.btn-add-favorite]="!isFavorite(pollution.id)"
+            (click)="toggleFavorite(pollution)"
+          >
+            {{ isFavorite(pollution.id) ? "❤️ Retirer" : "🤍 Favoris" }}
+          </button>
+          }
           <button
             class="btn btn-danger"
             (click)="deletePollution(pollution.id)"

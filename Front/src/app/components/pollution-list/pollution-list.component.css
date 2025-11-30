@@ -234,6 +234,24 @@
   border-top: 0.0625rem solid #e0e0e0;
 }
 
+.btn-add-favorite {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-add-favorite:hover {
+  background: #5a6268;
+}
+
+.btn-favorite {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-favorite:hover {
+  background: #c82333;
+}
+
 /* Responsive */
 @media (max-width: 48rem) {
   .header {
