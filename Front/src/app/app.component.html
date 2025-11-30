@@ -28,11 +28,11 @@
         <span class="badge">{{ favoritesCount$ | async }}</span>
         }
       </a>
-      }
+      } @if (!userName) {
       <a routerLink="/login" routerLinkActive="active" class="nav-link">
         🔐 Connexion
       </a>
-      @if (userName) {
+      } @if (userName) {
       <div class="nav-user">
         <span>{{ userName }}</span>
         <button class="btn btn-link" (click)="logout()">Se déconnecter</button>
