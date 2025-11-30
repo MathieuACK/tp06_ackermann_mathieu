@@ -18,6 +18,17 @@
       >
         ➕ Signaler une pollution
       </a>
+      @if (userName) {
+      <a
+        routerLink="/pollution/favorites"
+        routerLinkActive="active"
+        class="nav-link favorites-link"
+      >
+        💙 Favoris @if ((favoritesCount$ | async)! > 0) {
+        <span class="badge">{{ favoritesCount$ | async }}</span>
+        }
+      </a>
+      }
       <a routerLink="/login" routerLinkActive="active" class="nav-link">
         🔐 Connexion
       </a>

@@ -1,19 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { PollutionModule } from './pollution/pollution.module';
 import { AuthService } from './services/auth/auth.service';
+import { FavoritesState } from './shared/states/favorites.state';
 
 @Component({
-    selector: 'app-root',
-    imports: [RouterOutlet, RouterLink, RouterLinkActive, PollutionModule],
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    PollutionModule,
+  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'Pollution Tracker';
   userName = '';
 
-  constructor(private auth: AuthService) {}
+  @Select(FavoritesState.getFavoritesCount)
+  favoritesCount$!: Observable<number>;
+
+  constructor(private auth: AuthService, private store: Store) {}
 
   ngOnInit(): void {
     this.auth.getCurrentUser().subscribe((u) => {
